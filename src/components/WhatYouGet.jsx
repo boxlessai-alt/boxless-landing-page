@@ -1,31 +1,35 @@
+import { Search, PenLine, Image, Layers, Palette, FileText, Clock } from 'lucide-react';
+
+const ICON_PROPS = { size: 28, color: '#F59E0B', strokeWidth: 1.5 };
+
 const FEATURES = [
   {
-    icon: '🔍',
+    Icon: Search,
     title: 'LinkedIn SEO Overhaul',
     desc: 'Optimized so the right people find you first.',
   },
   {
-    icon: '✍️',
+    Icon: PenLine,
     title: 'Headline + About Section Rewrite',
     desc: 'Written to convert profile views into DMs.',
   },
   {
-    icon: '🎨',
+    Icon: Image,
     title: 'Banner Design',
     desc: 'Designed by Joseph Kaloi, Boxless AI Creative Director.',
   },
   {
-    icon: '🏷️',
+    Icon: Layers,
     title: '2 Logo Variations',
     desc: 'Professional mark you can use across all your platforms.',
   },
   {
-    icon: '📐',
+    Icon: Palette,
     title: 'Brand Kit + Brand Guidelines',
     desc: 'Colors, fonts, and rules — so everything looks consistent.',
   },
   {
-    icon: '📊',
+    Icon: FileText,
     title: 'LinkedIn Profile Audit Report (BONUS)',
     desc: '13-page deep-dive on exactly what to fix and why.',
   },
@@ -47,7 +51,9 @@ export default function WhatYouGet() {
               key={i}
               className="glass glass-hover rounded-xl p-6 transition-all duration-300"
             >
-              <div className="text-3xl mb-4">{f.icon}</div>
+              <div className="mb-4">
+                <f.Icon {...ICON_PROPS} />
+              </div>
               <h3 className="font-syne font-semibold text-lg text-text-primary mb-2">
                 {f.title}
               </h3>
@@ -60,7 +66,7 @@ export default function WhatYouGet() {
 
         <div className="text-center mt-10">
           <div className="inline-flex items-center gap-2 glass rounded-full px-5 py-2.5 text-sm text-text-secondary">
-            <span className="text-accent-amber">⏱</span>
+            <Clock size={16} color="#F59E0B" strokeWidth={1.5} />
             Delivered in 3 business days. 100% done for you.
           </div>
         </div>

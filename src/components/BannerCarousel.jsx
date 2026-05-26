@@ -13,60 +13,38 @@ const BANNERS = [
   { src: '/banners/banner-9.png', name: 'Maggie' },
 ];
 
-const GAP = 16;
-
 export default function BannerCarousel() {
   const trackRef = useRef(null);
   const [current, setCurrent] = useState(0);
-  const [dims, setDims] = useState({ cardWidth: 0, containerWidth: 0 });
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const update = () => {
-      const card = track.children[0];
-      if (card) {
-        setDims({
-          cardWidth: card.getBoundingClientRect().width,
-          containerWidth: track.getBoundingClientRect().width,
-        });
-      }
-    };
-
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(track);
-    window.addEventListener('resize', update);
-    return () => { ro.disconnect(); window.removeEventListener('resize', update); };
-  }, []);
-
-  const visibleCount = Math.max(1, Math.floor(dims.containerWidth / (dims.cardWidth + GAP)));
-  const maxIndex = Math.max(0, BANNERS.length - visibleCount);
+  const [isHovered, setIsHovered] = useState(false);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   const scrollTo = useCallback((index) => {
-    const clamped = Math.max(0, Math.min(index, maxIndex));
+    const clamped = Math.max(0, Math.min(index, BANNERS.length - 1));
     setCurrent(clamped);
-    if (trackRef.current && dims.cardWidth > 0) {
+    if (trackRef.current) {
+      const slideWidth = trackRef.current.offsetWidth;
       trackRef.current.scrollTo({
-        left: clamped * (dims.cardWidth + GAP),
+        left: clamped * slideWidth,
         behavior: 'smooth',
       });
     }
-  }, [maxIndex, dims.cardWidth]);
+  }, []);
 
   const prev = () => scrollTo(current - 1);
   const next = () => scrollTo(current + 1);
 
-  // Auto-advance every 4s
+  // Auto-advance every 4s, pause on hover
   useEffect(() => {
-    if (maxIndex <= 0) return;
     const timer = setInterval(() => {
+      if (isHovered) return;
       setCurrent((prevIdx) => {
-        const nextIdx = prevIdx >= maxIndex ? 0 : prevIdx + 1;
-        if (trackRef.current && dims.cardWidth > 0) {
+        const nextIdx = prevIdx >= BANNERS.length - 1 ? 0 : prevIdx + 1;
+        if (trackRef.current) {
+          const slideWidth = trackRef.current.offsetWidth;
           trackRef.current.scrollTo({
-            left: nextIdx * (dims.cardWidth + GAP),
+            left: nextIdx * slideWidth,
             behavior: 'smooth',
           });
         }
@@ -74,7 +52,31 @@ export default function BannerCarousel() {
       });
     }, 4000);
     return () => clearInterval(timer);
-  }, [maxIndex, dims.cardWidth]);
+  }, [isHovered]);
+
+  // Sync current index on scroll (for touch/drag)
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const handleScroll = () => {
+      const slideWidth = track.offsetWidth;
+      const idx = Math.round(track.scrollLeft / slideWidth);
+      setCurrent(idx);
+    };
+    track.addEventListener('scroll', handleScroll, { passive: true });
+    return () => track.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Touch swipe handlers
+  const onTouchStart = (e) => {
+    touchStartX.current = e.changedTouches[0].screenX;
+  };
+  const onTouchEnd = (e) => {
+    touchEndX.current = e.changedTouches[0].screenX;
+    const diff = touchStartX.current - touchEndX.current;
+    if (diff > 50) next();
+    else if (diff < -50) prev();
+  };
 
   return (
     <section className="py-20 sm:py-28">
@@ -84,7 +86,11 @@ export default function BannerCarousel() {
           <span className="text-accent-plum text-glow-plum">authority</span> in your space.
         </h2>
 
-        <div className="relative mt-12">
+        <div
+          className="relative mt-12"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           {/* Left arrow */}
           <button
             onClick={prev}
@@ -97,44 +103,52 @@ export default function BannerCarousel() {
           {/* Right arrow */}
           <button
             onClick={next}
-            disabled={current >= maxIndex}
+            disabled={current >= BANNERS.length - 1}
             className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-full glass border border-white/10 text-text-primary hover:border-accent-plum/50 hover:text-accent-plum transition-all disabled:opacity-30 disabled:cursor-not-allowed -mr-2 sm:-mr-5"
           >
             <ChevronRight size={20} />
           </button>
 
-          {/* Track */}
+          {/* Track — single banner, full width, swipeable */}
           <div
             ref={trackRef}
-            className="flex gap-4 overflow-x-hidden scroll-smooth mx-8 sm:mx-12"
+            className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth mx-8 sm:mx-12"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
           >
             {BANNERS.map((banner, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 glass rounded-xl overflow-hidden transition-all duration-500 w-full md:w-[47%] lg:w-[31%]"
+                className="flex-shrink-0 w-full snap-start"
               >
-                <div
-                  className="bg-bg-secondary flex items-center justify-center"
-                  style={{ aspectRatio: '4 / 1' }}
-                >
-                  <img
-                    src={banner.src}
-                    alt={`LinkedIn banner for ${banner.name}`}
-                    loading="lazy"
-                    className="w-full h-full object-contain"
-                  />
+                <div className="glass rounded-xl overflow-hidden">
+                  <div
+                    className="bg-bg-secondary flex items-center justify-center"
+                    style={{ aspectRatio: '4 / 1' }}
+                  >
+                    <img
+                      src={banner.src}
+                      alt={`LinkedIn banner for ${banner.name}`}
+                      loading="lazy"
+                      className="w-full h-full object-contain"
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="text-sm text-text-secondary px-4 py-3 text-center">
+                    {banner.name}
+                  </p>
                 </div>
-                <p className="text-sm text-text-secondary px-4 py-3">{banner.name}</p>
               </div>
             ))}
           </div>
 
-          {/* Dots — 9 total, one per banner */}
+          {/* Dots — 9 total */}
           <div className="flex justify-center gap-2 mt-6">
             {BANNERS.map((_, i) => (
               <button
                 key={i}
-                onClick={() => scrollTo(Math.min(i, maxIndex))}
+                onClick={() => scrollTo(i)}
                 className={`h-2 rounded-full transition-all ${
                   i === current
                     ? 'bg-accent-amber w-6'
