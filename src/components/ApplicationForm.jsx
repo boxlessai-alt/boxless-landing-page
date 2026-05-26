@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { submitLead } from '../utils/api';
 
 const BUSINESS_TYPES = [
@@ -36,8 +37,8 @@ export default function ApplicationForm() {
     deal_value: '',
   });
   const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -60,9 +61,10 @@ export default function ApplicationForm() {
 
     try {
       await submitLead(form);
-      setSubmitted(true);
       // Meta Pixel lead event
       if (window.fbq) window.fbq('track', 'Lead');
+      // Redirect to thank-you page with WhatsApp number
+      navigate('/thank-you', { state: { whatsapp: form.whatsapp } });
     } catch (err) {
       setError(err.message || 'Something went wrong. Please try again.');
     } finally {
@@ -70,25 +72,7 @@ export default function ApplicationForm() {
     }
   };
 
-  if (submitted) {
-    return (
-      <section id="apply" className="py-20 sm:py-28 bg-bg-secondary/50">
-        <div className="max-w-lg mx-auto px-4 sm:px-6 text-center">
-          <div className="glass rounded-2xl p-8 sm:p-12">
-            <div className="text-5xl mb-4">✅</div>
-            <h3 className="font-syne font-bold text-2xl text-text-primary mb-4">
-              Application received.
-            </h3>
-            <p className="text-text-secondary">
-              We'll send your payment link to{' '}
-              <span className="text-accent-cyan font-semibold">{form.whatsapp}</span>{' '}
-              within 2 hours.
-            </p>
-          </div>
-        </div>
-      </section>
-    );
-  }
+
 
   return (
     <section id="apply" className="py-20 sm:py-28 bg-bg-secondary/50">

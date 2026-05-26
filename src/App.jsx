@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BannerCarousel from './components/BannerCarousel';
@@ -9,8 +10,9 @@ import ApplicationForm from './components/ApplicationForm';
 import FAQ from './components/FAQ';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
+import ThankYou from './pages/ThankYou';
 
-function App() {
+function LandingPage() {
   return (
     <div className="min-h-screen bg-bg-primary">
       <Navbar />
@@ -25,6 +27,17 @@ function App() {
       <FinalCTA />
       <Footer />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/thank-you" element={<ThankYou />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
