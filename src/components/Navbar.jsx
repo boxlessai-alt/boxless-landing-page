@@ -8,20 +8,10 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
         <a href="/" className="flex items-center">
           <img
-            src="/logo.svg"
+            src="/logo.png"
             alt="Boxless AI"
-            className="h-7 w-auto"
-            onError={(e) => {
-              // Fallback to styled text if logo fails
-              e.target.style.display = 'none';
-              e.target.nextSibling.style.display = 'flex';
-            }}
+            className="h-8 w-auto"
           />
-          <div className="hidden items-baseline gap-1" style={{ display: 'none' }}>
-            <span className="font-syne font-bold text-lg text-accent-cyan">BOXLESS</span>
-            <span className="font-syne font-bold text-lg text-accent-purple">AI</span>
-            <span className="font-dm text-xs text-text-secondary ml-1">Ltd</span>
-          </div>
         </a>
         <button
           onClick={scrollToForm}

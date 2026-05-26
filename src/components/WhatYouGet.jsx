@@ -11,7 +11,7 @@ const FEATURES = [
   },
   {
     icon: '🎨',
-    title: 'Banner Design (2 options)',
+    title: 'Banner Design',
     desc: 'Designed by Joseph Kaloi, Boxless AI Creative Director.',
   },
   {
