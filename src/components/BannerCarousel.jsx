@@ -2,7 +2,6 @@ import { useRef, useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const BANNERS = [
-  { src: '/banners/banner-1.jpg', name: 'Agoyom Akomjo' },
   { src: '/banners/banner-2.jpg', name: 'Antonny Gacheru' },
   { src: '/banners/banner-3.jpg', name: 'Marc Voi Chiuli' },
   { src: '/banners/banner-4.jpg', name: 'Richard Kibaara' },
@@ -11,6 +10,7 @@ const BANNERS = [
   { src: '/banners/banner-7.png', name: 'Stanley' },
   { src: '/banners/banner-8.png', name: 'Marc' },
   { src: '/banners/banner-9.png', name: 'Maggie' },
+  { src: '/banners/banner-1.jpg', name: 'Agoyom Akomjo' },
 ];
 
 export default function BannerCarousel() {
