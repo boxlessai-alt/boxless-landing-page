@@ -1,4 +1,5 @@
 import { useCountdown } from '../hooks/useCountdown';
+import { Check } from 'lucide-react';
 
 const INCLUDES = [
   'LinkedIn SEO Overhaul',
@@ -37,7 +38,7 @@ export default function Pricing() {
           <ul className="space-y-3 mb-8">
             {INCLUDES.map((item, i) => (
               <li key={i} className="flex items-start gap-3 text-sm">
-                <span className="text-accent-amber mt-0.5">✅</span>
+                <Check size={16} color="#F59E0B" strokeWidth={2.5} className="mt-0.5 shrink-0" />
                 <span className="text-text-primary">{item}</span>
               </li>
             ))}
