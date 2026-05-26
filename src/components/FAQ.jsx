@@ -31,7 +31,7 @@ function FAQItem({ item, isOpen, onClick }) {
         className="w-full flex items-center justify-between px-5 py-4 text-left"
       >
         <span className="font-syne font-semibold text-sm text-text-primary">{item.q}</span>
-        <span className={`text-accent-cyan text-xl transition-transform ${isOpen ? 'rotate-45' : ''}`}>
+        <span className={`text-accent-plum text-xl transition-transform ${isOpen ? 'rotate-45' : ''}`}>
           +
         </span>
       </button>

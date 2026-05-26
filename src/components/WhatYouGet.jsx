@@ -37,7 +37,7 @@ export default function WhatYouGet() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <h2 className="font-syne font-bold text-3xl sm:text-4xl text-text-primary text-center mb-4">
           Everything you need to go from{' '}
-          <span className="text-accent-cyan">invisible</span> to{' '}
+          <span className="text-accent-plum">invisible</span> to{' '}
           <span className="text-accent-purple">undeniable</span>.
         </h2>
 
@@ -60,7 +60,7 @@ export default function WhatYouGet() {
 
         <div className="text-center mt-10">
           <div className="inline-flex items-center gap-2 glass rounded-full px-5 py-2.5 text-sm text-text-secondary">
-            <span className="text-accent-cyan">⏱</span>
+            <span className="text-accent-amber">⏱</span>
             Delivered in 3 business days. 100% done for you.
           </div>
         </div>

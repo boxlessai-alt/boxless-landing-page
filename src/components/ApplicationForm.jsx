@@ -81,7 +81,7 @@ export default function ApplicationForm() {
           Apply for your spot.
         </h2>
         <p className="text-text-secondary text-center mb-10">
-          Only <span className="text-accent-gold font-semibold">26</span> remaining at $197.
+          Only <span className="text-accent-amber font-semibold">26</span> remaining at $197.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -92,7 +92,7 @@ export default function ApplicationForm() {
               type="text"
               value={form.full_name}
               onChange={(e) => handleChange('full_name', e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-text-primary placeholder-white/20 focus:outline-none focus:border-accent-cyan/50 transition-colors"
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-text-primary placeholder-white/20 focus:outline-none focus:border-accent-plum/50 transition-colors"
               placeholder="Your full name"
             />
           </div>
@@ -104,7 +104,7 @@ export default function ApplicationForm() {
               type="email"
               value={form.email}
               onChange={(e) => handleChange('email', e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-text-primary placeholder-white/20 focus:outline-none focus:border-accent-cyan/50 transition-colors"
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-text-primary placeholder-white/20 focus:outline-none focus:border-accent-plum/50 transition-colors"
               placeholder="you@example.com"
             />
           </div>
@@ -116,7 +116,7 @@ export default function ApplicationForm() {
               type="text"
               value={form.whatsapp}
               onChange={(e) => handleChange('whatsapp', e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-text-primary placeholder-white/20 focus:outline-none focus:border-accent-cyan/50 transition-colors"
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-text-primary placeholder-white/20 focus:outline-none focus:border-accent-plum/50 transition-colors"
               placeholder="+254712345678"
             />
           </div>
@@ -132,7 +132,7 @@ export default function ApplicationForm() {
                   onClick={() => handleChange('business_type', type)}
                   className={`text-left px-4 py-3 rounded-lg border text-sm transition-all ${
                     form.business_type === type
-                      ? 'border-accent-cyan bg-accent-cyan/10 text-accent-cyan'
+                      ? 'border-accent-plum bg-accent-plum/10 text-accent-plum'
                       : 'border-white/10 bg-white/5 text-text-secondary hover:border-white/20'
                   }`}
                 >
@@ -153,7 +153,7 @@ export default function ApplicationForm() {
                   onClick={() => handleChange('linkedin_goal', goal)}
                   className={`w-full text-left px-4 py-3 rounded-lg border text-sm transition-all ${
                     form.linkedin_goal === goal
-                      ? 'border-accent-cyan bg-accent-cyan/10 text-accent-cyan'
+                      ? 'border-accent-plum bg-accent-plum/10 text-accent-plum'
                       : 'border-white/10 bg-white/5 text-text-secondary hover:border-white/20'
                   }`}
                 >
@@ -174,7 +174,7 @@ export default function ApplicationForm() {
                   onClick={() => handleChange('deal_value', val)}
                   className={`text-center px-3 py-3 rounded-lg border text-sm transition-all ${
                     form.deal_value === val
-                      ? 'border-accent-cyan bg-accent-cyan/10 text-accent-cyan'
+                      ? 'border-accent-plum bg-accent-plum/10 text-accent-plum'
                       : 'border-white/10 bg-white/5 text-text-secondary hover:border-white/20'
                   }`}
                 >
@@ -193,7 +193,7 @@ export default function ApplicationForm() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full bg-accent-gold text-bg-primary font-bold text-lg py-4 rounded-xl glow-gold hover:brightness-110 transition-all disabled:opacity-50"
+            className="w-full bg-accent-amber text-bg-primary font-bold text-lg py-4 rounded-xl glow-amber hover:brightness-110 transition-all disabled:opacity-50"
           >
             {submitting ? 'Submitting...' : 'Secure My Spot — $197 →'}
           </button>

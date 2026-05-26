@@ -10,7 +10,7 @@ export default function FinalCTA() {
           Stop leaving money on the table.
           <br />
           Your profile should be{' '}
-          <span className="text-accent-cyan text-glow-cyan">working for you</span> 24/7.
+          <span className="text-accent-amber text-glow-amber">working for you</span> 24/7.
         </h2>
         <p className="text-text-secondary text-lg mb-10">
           30 spots. $197. 3 business days.
@@ -19,7 +19,7 @@ export default function FinalCTA() {
         </p>
         <button
           onClick={scrollToForm}
-          className="inline-flex items-center gap-2 bg-accent-gold text-bg-primary font-bold text-lg px-8 py-4 rounded-xl glow-gold hover:brightness-110 transition-all"
+          className="inline-flex items-center gap-2 bg-accent-amber text-bg-primary font-bold text-lg px-8 py-4 rounded-xl glow-amber hover:brightness-110 transition-all"
         >
           Apply Now →
         </button>

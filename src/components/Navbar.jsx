@@ -15,7 +15,7 @@ export default function Navbar() {
         </a>
         <button
           onClick={scrollToForm}
-          className="text-sm font-semibold bg-accent-gold text-bg-primary px-4 py-2 rounded-lg hover:brightness-110 transition-all"
+          className="text-sm font-semibold bg-accent-amber text-bg-primary px-4 py-2 rounded-lg hover:brightness-110 transition-all"
         >
           Secure Your Spot →
         </button>

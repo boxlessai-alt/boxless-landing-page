@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="border-t border-white/[0.06] py-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
         <div className="flex items-baseline justify-center gap-1 mb-4">
-          <span className="font-syne font-bold text-lg text-accent-cyan">BOXLESS</span>
+          <span className="font-syne font-bold text-lg text-accent-plum">BOXLESS</span>
           <span className="font-syne font-bold text-lg text-accent-purple">AI</span>
           <span className="font-dm text-xs text-text-secondary ml-1">Ltd</span>
         </div>

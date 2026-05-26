@@ -41,7 +41,7 @@ export default function ThankYou() {
           {whatsapp && (
             <p className="text-text-secondary text-sm border-t border-white/10 pt-4">
               We have your number:{' '}
-              <span className="text-accent-cyan font-mono">{whatsapp}</span>
+              <span className="text-accent-amber font-mono">{whatsapp}</span>
             </p>
           )}
         </div>

@@ -48,16 +48,16 @@ export default function CaseStudies() {
     <section className="py-20 sm:py-28 bg-bg-secondary/50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <h2 className="font-syne font-bold text-3xl sm:text-4xl text-text-primary text-center mb-12">
-          Real professionals. <span className="text-accent-cyan">Real results.</span>
+          Real professionals. <span className="text-accent-plum">Real results.</span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {CASES.map((c, i) => (
             <div
               key={i}
-              className="glass glass-hover rounded-xl p-6 border-l-2 border-l-accent-cyan transition-all duration-300"
+              className="glass glass-hover rounded-xl p-6 border-l-2 border-l-accent-plum transition-all duration-300"
             >
-              <p className="font-mono text-xs text-accent-gold mb-3">{c.highlight}</p>
+              <p className="font-mono text-xs text-accent-amber mb-3">{c.highlight}</p>
               <p className="text-text-primary text-sm leading-relaxed mb-4">
                 {c.result}
               </p>

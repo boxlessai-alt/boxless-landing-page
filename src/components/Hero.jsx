@@ -21,9 +21,9 @@ export default function Hero() {
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
         {/* Announcement bar */}
         <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8 text-sm">
-          <span className="text-accent-cyan">⚡</span>
+          <span className="text-accent-amber">⚡</span>
           <span className="text-text-secondary">Limited offer — 30 spots only. Closes in</span>
-          <span className="font-mono font-bold text-accent-cyan">
+          <span className="font-mono font-bold text-accent-amber">
             {days}d {hours}h {minutes}m {seconds}s
           </span>
         </div>
@@ -31,7 +31,7 @@ export default function Hero() {
         {/* Headline */}
         <h1 className="font-syne font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-text-primary leading-tight mb-6">
           Your LinkedIn Profile Should Be{' '}
-          <span className="text-accent-cyan text-glow-cyan">Bringing You Clients.</span>
+          <span className="text-accent-amber text-glow-amber">Bringing You Clients.</span>
           <br />
           Is Yours?
         </h1>
@@ -48,20 +48,20 @@ export default function Hero() {
         {/* Social proof bar */}
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-text-secondary mb-10">
           <span className="flex items-center gap-1">
-            <span className="text-accent-cyan">✓</span> 20x average jump in profile views
+            <span className="text-accent-amber">✓</span> 20x average jump in profile views
           </span>
           <span className="flex items-center gap-1">
-            <span className="text-accent-cyan">✓</span> 3 clients closed in 90 days
+            <span className="text-accent-amber">✓</span> 3 clients closed in 90 days
           </span>
           <span className="flex items-center gap-1">
-            <span className="text-accent-cyan">✓</span> 31.8% response rate in 19 days
+            <span className="text-accent-amber">✓</span> 31.8% response rate in 19 days
           </span>
         </div>
 
         {/* CTA */}
         <button
           onClick={scrollToForm}
-          className="inline-flex items-center gap-2 bg-accent-gold text-bg-primary font-bold text-lg px-8 py-4 rounded-xl glow-gold hover:brightness-110 transition-all mb-6"
+          className="inline-flex items-center gap-2 bg-accent-amber text-bg-primary font-bold text-lg px-8 py-4 rounded-xl glow-amber hover:brightness-110 transition-all mb-6"
         >
           Secure Your Spot — $197
         </button>
